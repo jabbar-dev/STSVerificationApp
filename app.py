@@ -5,6 +5,10 @@ import face_recognition
 import numpy as np
 from pyzbar.pyzbar import decode
 
+
+
+
+
 app=Flask(__name__)
 camera = cv2.VideoCapture(0)
 # Load a sample picture and learn how to recognize it.
@@ -15,20 +19,26 @@ arslan_face_encoding = face_recognition.face_encodings(arslan_image)[0]
 jabbar_image = face_recognition.load_image_file("pictures/jab.jpg")
 jabbar_face_encoding = face_recognition.face_encodings(jabbar_image)[0]
 
+
 sumia_image = face_recognition.load_image_file("pictures/sumiaa.jpeg")
 sumia_face_encoding = face_recognition.face_encodings(sumia_image)[0]
+
+saif_image = face_recognition.load_image_file("pictures/saif.jpg")
+saif_face_encoding = face_recognition.face_encodings(saif_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     arslan_face_encoding,
     sumia_face_encoding,
-    jabbar_face_encoding
+    jabbar_face_encoding,
+    saif_face_encoding
     
 ]
 known_face_names = [
     "Arslan",
     "Sumia",
-    "Jabbar"
+    "Jabbar",
+    "Saif"
 ]
 # Initialize some variables
 face_locations = []
