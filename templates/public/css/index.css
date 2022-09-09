@@ -1,0 +1,45 @@
+.back_color{
+    background-color: rgb(243, 243, 243);
+}
+
+.para-space{
+    margin-top: 1.5em;
+}
+
+.container-back{
+    background-color: white;
+    text-align: center;
+    border-radius: 4%;
+}
+
+.container{
+    width: 80%;
+    margin: 0px auto;
+}
+
+.text-container{
+    padding: 2%;
+}
+
+.login-cont{
+    padding: 7%;
+}
+
+.btn1{
+    width: 100%;
+    font-weight: bold;
+    background-color: rgb(233, 92, 41);
+    height: 2.5em;
+    border-radius: 10px;
+    border: 0px;
+}
+
+.click-text{
+    font-size: 0.7em;
+}
+
+.head{
+    width: 95%;
+    margin: 50px auto;
+}
+

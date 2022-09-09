@@ -1,0 +1,44 @@
+div h3{
+    color:  rgb(233, 92, 41);
+}
+
+.main-container{
+    margin-top: 70px;
+}
+
+.btn-container{
+    padding: 5% 5%;
+}
+
+.number-container{
+    padding-top: 5%;
+}
+
+.btn2{
+    color: white;
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: rgb(233, 92, 41);
+    height: 2em;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.circle{
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    background-color:   rgb(233, 92, 41);
+}
+
+.num-style{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.text-style{
+    margin-left: 43px;
+}

@@ -1,0 +1,28 @@
+.content{
+    width: 40%;
+    margin: 0px auto;
+    text-align: center;
+    
+}
+
+.btn2{
+    color: white;
+    font-size: 25px;
+    padding: 0px 20px;
+    margin-left: 20px;
+    font-weight: bold;
+    background-color: rgb(233, 92, 41);
+    height: 2em;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.icons{
+    text-align: center;
+    width: 70%;
+    margin: 0px auto;
+}
+
+.icon-style{
+    padding-top: 4%;
+}
