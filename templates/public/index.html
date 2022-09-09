@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        canvas{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div style="border: black; align-self: center;text-align: center;">
+        <h1 style="text-align:center;color: #F56442;">FACE VERIFICATION</h1>
+        <p style="font-size:12px ;">PASS THE CANDIDATE ONE BY ONE AND WATCH REAL TIME VERIFICATION/p>
+        </div>
+        <div style="border: black; align-self: center;">
+    
+          
+            
+            <video id="videoInput" width="600" height="400" muted controls style="border-radius: 7px;"></video>
+            
+          
+        </div>
+        <br>
+        <br>
+        <div style="color:rgb(255, 255, 255);text-align:center;" >
+          <a href="http://127.0.0.1:5000/"><button style="background-color:#F56442;border:none;width:200px;height: 50px;color:white;text-align: center;display: inline-block;font-size: 16px;margin: 4px 2px;">Go Back</button></a>
+        </div>
+    
+
+    <script  src="./js/face-api.min.js"></script>
+    <script defer async src="./js/script.js"></script>
+</body>
+</html>

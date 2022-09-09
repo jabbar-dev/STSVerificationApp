@@ -5,8 +5,7 @@ import cv2
 import face_recognition
 import numpy as np
 from pyzbar.pyzbar import decode
-import requests
-import json
+
 
 
 
@@ -217,88 +216,3 @@ def code():
 
 if __name__=='__main__':
     app.run(debug=True)
-
-# app = Flask(__name__)
-
-# camera = cv2.VideoCapture(0)
-
-# def generate_frames():
-#     while True:
-            
-#         ## read the camera frame
-#         success,frame=camera.read()
-#         if not success:
-#             break
-#         else:
-            
-#             detector=cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
-#             eye_cascade = cv2.CascadeClassifier('Haarcascades/haarcascade_eye.xml')
-#             faces=detector.detectMultiScale(frame,1.1,7)
-#             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-#              #Draw the rectangle around each face
-#             for (x, y, w, h) in faces:
-#                 cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
-#                 roi_gray = gray[y:y+h, x:x+w]
-#                 roi_color = frame[y:y+h, x:x+w]
-#                 eyes = eye_cascade.detectMultiScale(roi_gray, 1.1, 3)
-
-#             ret,buffer=cv2.imencode('.jpg',frame)
-#             frame=buffer.tobytes()
-
-#             yield(b'--frame\r\n'
-#                         b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
-# @app.route('/video')
-# def video():
-#     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
-
-# if __name__=="__main__":
-#     app.run(debug=True)
-
-
-
-
-
-
-# from pickletools import markobject
-# from flask import Flask, redirect, url_for,render_template
-
-# app = Flask(__name__)
-
-
-# @app.route('/')
-# def welcome():
-#     return render_template('index.html')
-
-# @app.route('/members')
-# def mem():
-#     return 'hello members how are you'
-
-
-# @app.route('/success/<int:score>')
-# def success(score):
-#     return "The Person has passed and the mark is "+str(score)
-    
-
-
-# @app.route('/fail/<int:score>')
-# def fail(score):
-#     return "The person has failed and the mark is " +str(score)
-
-# @app.route('/results/<int:marks>')
-# def results(marks):
-#     result=""
-#     if marks<50:
-#         result='fail'
-#     else:
-#         result='success'
-#     return redirect(url_for(result,score=marks))
-
-
-
-# if __name__ == '__main__':
-#     app.run(debug=True)

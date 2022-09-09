@@ -3,13 +3,25 @@
 
 
   <body>
-    <h1 style="color:rgb(255, 255, 255);text-align:center; background-color: rgb(68, 195, 5);">QR Code Validation</h1>
+    
+
+    <div style="border: black; align-self: center;text-align: center;">
+    <h1 style="text-align:center;color: #F56442;">QR CODE VERIFICATION</h1>
+    <p style="font-size:12px ;">SHOW THE QR ON SLIP AND LET IT VERIFIED AND AUTHENTICATED IMMEDIATELY</p>
+    </div>
     <div style="border: black; align-self: center;">
 
       <center>
-        <img src="{{ url_for('code') }}" width="50%" style="border-radius: 10px;"/>
+        <img src="{{ url_for('code') }}" width="600px" height="400px" style="border-radius: 10px;"/>
+        
       </center>
     </div>
+    <br>
+    <br>
+    <div style="color:rgb(255, 255, 255);text-align:center;" >
+      <a href="/"><button style="background-color:#F56442;border:none;width:200px;height: 50px;color:white;text-align: center;display: inline-block;font-size: 16px;margin: 4px 2px;">Go Back</button></a>
+    </div>
+    
             
     </body>
 
