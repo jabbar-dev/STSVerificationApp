@@ -1,11 +1,12 @@
 from sre_constants import SUCCESS
+from urllib import request
 from flask import Flask, render_template, Response
 import cv2
 import face_recognition
 import numpy as np
 from pyzbar.pyzbar import decode
-
-
+import requests
+import json
 
 
 
@@ -20,33 +21,63 @@ jabbar_image = face_recognition.load_image_file("pictures/jab.jpg")
 jabbar_face_encoding = face_recognition.face_encodings(jabbar_image)[0]
 
 
-sumia_image = face_recognition.load_image_file("pictures/sumiaa.jpeg")
-sumia_face_encoding = face_recognition.face_encodings(sumia_image)[0]
+#POST API
+# headers = {
+#         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
+
+# r = requests.post("localhost:3002/api/analytic", headers=headers, data=json.dumps({
+#      "testID": "000-000-001",
+#     "testcenter": "Public School Sukkur",
+#     "detected":"arslan",
+#     "gender":"male",
+#     "authorized":"true"
+# }))
+
+
 
 saif_image = face_recognition.load_image_file("pictures/saif.jpg")
 saif_face_encoding = face_recognition.face_encodings(saif_image)[0]
 
+ghafoor_image = face_recognition.load_image_file("pictures/ghafoor.png")
+ghafoor_face_encoding = face_recognition.face_encodings(ghafoor_image)[0]
+
+tahir_image = face_recognition.load_image_file("pictures/tahir.png")
+tahir_face_encoding = face_recognition.face_encodings(tahir_image)[0]
+
+
+amjad_image = face_recognition.load_image_file("pictures/amjad.png")
+amjad_face_encoding = face_recognition.face_encodings(amjad_image)[0]
+
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     arslan_face_encoding,
-    sumia_face_encoding,
+
     jabbar_face_encoding,
-    saif_face_encoding
+    saif_face_encoding,
+    ghafoor_face_encoding,
+    tahir_face_encoding,
+    amjad_face_encoding
     
 ]
 known_face_names = [
     "Arslan",
-    "Sumia",
     "Jabbar",
-    "Saif"
+    "Saif", 
+    "Ghafoor",
+    "Tahir",
+    "Amjad"
 ]
 # Initialize some variables
 face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
+detected  = []
+
 
 def face_detect():  
+    countCountinue = 0
+    detectedAC = False
     while True:
         success, frame = camera.read()  # read the camera frame
         if not success:
@@ -76,8 +107,30 @@ def face_detect():
                 face_names.append(name)
             
 
+
             # Display the results
             for (top, right, bottom, left), name in zip(face_locations, face_names):
+                
+                if(name not in detected):
+
+                    prevName = name;
+
+                    if(prevName==name):
+                        countCountinue+=1
+                        if(countCountinue>=50):
+                            countCountinue = 0
+                            detectedAC = True
+                    
+                    if(detectedAC):
+                        
+                        detected.append(name)
+                        print(detected)
+                        detectedAC = False
+                        
+                   
+                else:
+                    pass
+
                 # Scale back up face locations since the frame we detected in was scaled to 1/4 size
                 top *= 4
                 right *= 4
@@ -91,6 +144,19 @@ def face_detect():
                 cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+            
+            detector=cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
+            eye_cascade = cv2.CascadeClassifier('Haarcascades/haarcascade_eye.xml')
+            faces=detector.detectMultiScale(frame,1.1,7)
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+             #Draw the rectangle around each face
+            for (x, y, w, h) in faces:
+                cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+                roi_gray = gray[y:y+h, x:x+w]
+                roi_color = frame[y:y+h, x:x+w]
+                eyes = eye_cascade.detectMultiScale(roi_gray, 1.1, 3)
+                for (ex, ey, ew, eh) in eyes:
+                    cv2.rectangle(roi_color, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 2)
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
